@@ -25,7 +25,7 @@ let instructions = {
   }
 };
 let iterateAgain = false, task;
-
+console.log(iterateAgain)
 function navigateInstructionPath(repeat = false){
   if (repeat == true) {
     // if multi stage instructions, ensures it goes back to first not second
@@ -103,7 +103,8 @@ function getNextInstructions(slideNum, expStage){
     case "main1-1":
       switch (slideNum){
         case 1:
-          return "Welcome to the experiment, thank you for your participation!";
+          $( getImageText(instructionImages[0])).insertAfter( "#instructions" + slideNum);
+          return "whatever u want";
         case 2:
           return "In this experiment you will perform a task where you learn a network structure of objects. You will also complete a few follow-up tasks after you finish the main task, including a few where you will indicate the font color of text. The experiment is expected to take approximately 35 to 45 minutes.";
         case 3:
@@ -356,6 +357,7 @@ function iterateInstruction(){
 
   // iterate as appropriate or allow next phase
   if (instrNum < instructions["max"][expStage]){
+
     instructions["iterator"][expStage]++;
   } else{
     exitResponse();

@@ -1,0 +1,26 @@
+1. Display instructions and cycle through screens (Done)
+2. Display stimuli and context
+    2a. Display stimuli in specific locations
+    2b. Display random stimuli from images folder
+    2c. Randomly choose 80/20 congruency block or 80/20 incongruency block
+    2d. Randomly make the stimuli congruent or incongruent (according to the block)
+        I. Store if a stimuli is larger or smaller than a basketball as a 1 or -1
+        II. Congruency can be 1 and incongruency is -1, then multiply congruency value with stimuli size value. If stimuli value stays the same, then it's congruent trial. Otherwise, it's incongruent.
+        III. Display corresponding flankers for the congruency value (if congruent AND larger, display smaller flankers. If congruent and smaller, display larger flankers).
+    2e. Randomly assign a context to a block and display it for each trial in that block
+3. Allow button presses
+    3a. Button presses cycle to the next screens
+4. Store data
+    4a. Store participant ID as an object of a class
+        I. Store reaction time for each trial under the participant object
+        II. Store button press value
+        III. Store congruency value
+        IV. Store stimuli size
+        V. Store if button press value matches with size value
+        VI. Store stimuli value
+        VII. Store context value
+        VIII. Store instruction screen timing
+5. Display repeat stimuli in testing phase (with same congruency and context)
+
+
+
