@@ -1,31 +1,6 @@
+// This file defines all functions relevant to the instructions
 // see function navigateInstructionPath() in tasks.js for navigation code
 
-// global instruction iterator information. Change as needed
-let instructions = {
-  // contains the interator for each instruction block
-  iterator: {
-    "main1-1": 1, "main1-2": 1, "main2": 1, "main3": 1, "main4": 1,"prac5": 1, "main6": 1, "main7": 1, "final": 1
-  },
-  // contains the max value of each instruction iteration. iteration will STOP at max.
-  max: {
-    "main1-1": 4, "main1-2": 7, "main2": 6, "main3": 4, "main4": 8,"prac5": 6, "main6": 6, "main7": 5,"final": 1
-  },
-  // what does instruction section end with?
-  // #nextSectionButton, #startExpButton, keyPressNextSection, keyPressStartTask
-  exitResponse: {
-    "main1-1": '#nextSectionButton',
-    "main1-2": '#startExpButton',
-    "main2": 'keyPressStartTask',
-    "main3": 'keyPressStartTask',
-    "main4": '#startExpButton',
-    "prac5": 'keyPressStartTask',
-    "main6": 'keyPressStartTask',
-    "main7": 'keyPressStartTask',
-    "final": 'keyPressStartTask'
-  }
-};
-let iterateAgain = false, task;
-console.log(iterateAgain)
 function navigateInstructionPath(repeat = false){
   if (repeat == true) {
     // if multi stage instructions, ensures it goes back to first not second
@@ -103,7 +78,7 @@ function getNextInstructions(slideNum, expStage){
     case "main1-1":
       switch (slideNum){
         case 1:
-          $( getImageText(instructionImages[0])).insertAfter( "#instructions" + slideNum);
+          $(getImageText(instructionImages[1])).insertAfter( "#instructions" + slideNum);
           return "whatever u want";
         case 2:
           return "In this experiment you will perform a task where you learn a network structure of objects. You will also complete a few follow-up tasks after you finish the main task, including a few where you will indicate the font color of text. The experiment is expected to take approximately 35 to 45 minutes.";
