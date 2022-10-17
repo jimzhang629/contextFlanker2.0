@@ -3,18 +3,19 @@
 // -------------------------------------------//
 
 let instructionImages = {
-  1: 'images/M1.jpg',
-  2: 'images/M2.png',
+  1: '../images/M1.jpg',
+  2: '../images/M2.jpg',
 }
 
 
 // select  images to use in task (out of 272 options for manmade and 272 options for natural)
+// should rebrand all the images as smaller or larger actually
 let imageSRCs = [];
 for (let i = 1; i <= 272; i++) {
-  imageSRCs.push('images/M${i}.jpg');
-  imageSRCs.push('images/N${i}.jpg');
+  imageSRCs.push('../images/M${i}.jpg');
+  imageSRCs.push('../images/N${i}.jpg');
 }
-/*
+
 // randomly sample from images
 let selectedSRCs = _.sample(imageSRCs,networkSize);
 let unselectedSRCs = imageSRCs.filter(image => !selectedSRCs.includes(image))
@@ -246,4 +247,4 @@ function drawRect(x, y, w, h, svg){
   rect.setAttribute("stroke-width", "1px");
   $("#"+svg).append(rect);
 }
-*/
+
