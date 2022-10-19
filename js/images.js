@@ -7,13 +7,14 @@ let instructionImages = {
   2: '../images/M2.jpg',
 }
 
+let basketballImg = '../images/basketball.jpg';
 
 // select  images to use in task (out of 272 options for manmade and 272 options for natural)
 // should rebrand all the images as smaller or larger actually
 let imageSRCs = [];
-for (let i = 1; i <= 272; i++) {
-  imageSRCs.push('../images/M${i}.jpg');
-  imageSRCs.push('../images/N${i}.jpg');
+for (let i = 1; i <= 5; i++) {
+  imageSRCs.push(`../images/M${i}.jpg`); // why do these have to be back apostrophes
+  imageSRCs.push(`../images/N${i}.jpg`);
 }
 
 // randomly sample from images
