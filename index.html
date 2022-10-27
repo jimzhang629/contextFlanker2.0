@@ -1,31 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <title> Hope this works :) </title>
-    <!-- Define CSS and packages first so that task scripts can use them -->
+    <title> testing for image display </title>
     <link rel="stylesheet" href="styles.css">
-    <script src="/js/jquery-3.4.1.js"></script>
-    <script src="/js/underscore_min.js"></script>
-
-    <!-- task scripts, define main.js and miscFunctions first for their helper functions and global variables -->
-    <script src="/js/miscFunctions.js"></script>
-    <script src='/js/test.js'></script>
-    <script src="/js/images.js"></script>
-    <script src="/js/instructions.js"></script>
+    <script src='js/jquery-3.4.1.js'></script>
+    <script src="js/underscore_min.js"></script>
+    <script src="js/miscFunctions.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/images.js"></script>
+    <script src="js/instructions.js"></script>
+    <script src="js/contextFlankerPracticeTask.js"></script>
+    <script src="js/taskFunctions.js"></script>
+    <!-- demographics, data submission, etc -->
+    <script src ="js/experimentWrapper.js"></script>
 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Document</title>
 </head>
+
 <body>
     <div id="demographicsForm">
+        <p><b>Welcome to the experiment!</b> Thank you for your participation.</p>
         <p>Please take a few seconds to answer the demographic questions below:</p>
   
           <p class="selectTitle"> <b>Gender:</b> </p>
-          <select class="demoSelect" id="gender" onchange="demoChange()">
+          <select class="demoSelect" id="gender" onchange="demoChangeFunc()">
           <option value="Blank"></option>
               <option value="F">Female</option>
               <option value="M">Male</option>
@@ -33,10 +33,10 @@
           </select>
   
           <p class="selectTitle"><b>Age:</b> <span style="font-size: 20px">(Leave blank if you do not wish to respond)</span></p>
-          <input type='number' class="demoSelect" id="age" name="Age" value=""></input>
+          <input class="demoSelect" id="age" name="Age" value=""></input>
   
           <p class="selectTitle"><b>Ethnicity:</b></p>
-          <select class="demoSelect" id="ethnicity" onchange="demoChange()">
+          <select class="demoSelect" id="ethnicity" onchange="demoChangeFunc()">
           <option value="Blank"></option>
               <option value="HL">Hispanic/Latino</option>
               <option value="NHL">Non-Hispanic/Latino</option>
@@ -44,7 +44,7 @@
           </select>
   
           <p class="selectTitle"><b>Race:</b></p>
-          <select class="demoSelect" id="race" onchange="demoChange()">
+          <select class="demoSelect" id="race" onchange="demoChangeFunc()">
           <option value="Blank"></option>
               <option value="AI">American Indian/Alaska Native</option>
               <option value="A">Asian</option>
@@ -59,12 +59,40 @@
         <br>
           <button id="demographicSubmit">Submit</button>
       </div>
-
+      <table id="table">
+        <tr>
+          <td>
+            <p id="instruction" style="font-family: arial; font-size: 40px;"></p>
+            <p id="NoGo" style="font-family: arial; color: black; font-size: 40px;"></p>
+            <form id="mturk_form" method="POST" action="https://dibs-web01.vm.duke.edu/AMTSubmit/DataHandler_MTurk_RG.php">
+              <!-- <form id="mturk_form" method="POST" action="https://workersandbox.mturk.com/mturk/externalSubmit"> -->
+              <!-- <form id="mturk_form" method="POST" action="https://wwww.mturk.com/mturk/externalSubmit"> -->
+              <input type="hidden" id="assignmentId" name="assignmentId" value="">
+              <input type="hidden" id="workerId" name="workerId" value="">
+              <input type="hidden" id="hitId" name="hitId" value="">
+              <input type="hidden" id="RTs" name="RTs" value="">
+              <input type="hidden" id="demographics" name="demographics" value="SF_AdditionalSingleton">
+              <input type="hidden" id="ExpName" name="ExpName" value="SF_AdditionalSingleton">
+              <p style="font-size:22px; margin-left: 50px; margin-right:50px;">
+                Thank you for participating in this study. In this particular experiment, we were looking to see how the interference caused by highlighting a non-target shape impacted performance in finding the unique shape quickly, and how this impairment related to switching what kind of shape was unique.
+              </p>
+              <p style="font-size:22px; margin-left: 50px; margin-right:50px;">
+                If you would like to know more about or have any other questions about this experiment or your data, please feel free to contact me at rmg55@duke.edu. Thank you so much for your participation!
+              </p>
+              <p style="font-size:24px">
+                Please click the "Submit" button to submit your data.
+              </p>
+              <input id="submitButton" type="submit" name="Finish" value="Submit">
+            </form>
+          </td>
+        </tr>
+      </table>
+      <!-- instruction elements for all text screens -->
       <div id="instructionsDiv">
         <div class="instruction-content">
           <div class="instruction-header">
-            <h1>Instructions </h1>
-            <p style="font-weight: bold">Please read these instructions carefully.</p>
+            <h1 style="font-size: 40px;">Instructions </h1>
+            <p style="font-size: 22px; font-weight: bold">Please read these instructions carefully.</p>
           </div>
           <div class="instruction-body">
             <p id="instructions1" ></p>
@@ -84,8 +112,13 @@
           </div>
         </div>
       </div>
+    <!-- once you use the class, it makes it disappear -->
+    <!-- <div class="canvasas"> 
+        <canvas id="taskCanvas" width="1150px" height="600px"></canvas> 
+    </div> -->
+    <div> 
+        <canvas id="taskCanvas" width="800" height="600"></canvas> 
+    </div>
 </body>
+
 </html>
-
-
-

@@ -1,4 +1,42 @@
-:root {
+/* .canvasas {
+    display: none;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    border: 3px;
+    color: red;
+  } */
+
+#taskCanvas{
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* width: 100%;
+    height: 100%; */
+}
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
+
+  .flankers {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    justify-content: safe;
+    align-items: center;
+    align-items: safe;
+  }
+
+  .item {
+    order: 2;
+  }
+
+  :root {
     --size-scale: 0.6;
   }
   
@@ -10,13 +48,6 @@
       border:0;
   }
   
-  .center {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-  }
-
   body {
     height:100%;
       width:100%;
@@ -54,19 +85,6 @@
     width: 250px;
   }
   
-  canvas {
-    display: none;
-  }
-  
- 
-
-  .canvasas {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: none;
-  }
   
   .imageTable {
     display:table;
@@ -81,31 +99,30 @@
     float: left;
   }
   
-  /* instruction screen styles */
+/* instruction screen styles */
+.instructions {
+  display: none;
+  color: black;
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
 
-  
-  #instructionsDiv {
-    /* display: none; */
-    color: black;
-    text-align: center;
-    max-width: 900px;
-    margin: 0 auto;
-  }
-  
-  .instruction-body {
-    font-size: 18px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-  
-  .instruction-header p {
-    padding-bottom: 15px;
-    border-bottom: 3px solid black;
-  }
-  
-  .instruction-header {
-    text-align: left;
-  }
+.instruction-body {
+  font-size: 22px;
+  /* margin-top: 5px;
+  margin-bottom: 5px; */
+}
+
+.instruction-header p {
+  padding-bottom: 15px;
+  border-bottom: 3px solid black;
+}
+
+.instruction-header {
+  text-align: left;
+}
+
   
   /* buttons  */
   
@@ -147,97 +164,6 @@
     margin: 0 auto;
   }
   
-  /* orientation practice task */
-  
-  #orientationPracticeDiv{
-    display: none;
-    margin: 0 auto;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  
-  .OP_task_text{
-    text-align: center;
-    font: bold 30px Arial;
-  }
-  
-  #OP_images {
-    padding:0;
-    white-space: nowrap;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .OP_image_container {
-    display: inline-block;
-    margin: 30px;
-  }
-  
-  .OP_image {
-    position: relative;
-  }
-  
-  .OP_image:focus {
-    outline:none;
-  }
-  
-  #OP_task_feedback {
-    color: red;
-    visibility:hidden;
-  }
-  
-  /* orientation practice task */
-  
-  #oddOneOutTaskDiv{
-    display: none;
-    margin: 0 auto;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  
-  .OO_task_text{
-    text-align: center;
-    font: bold 30px Arial;
-  }
-  
-  #OO_images {
-    padding:0;
-    white-space: nowrap;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .OO_image_container {
-    display: inline-block;
-    margin: 30px;
-  }
-  
-  .OO_image {
-    position: relative;
-    width: 300px;
-  }
-  
-  .OO_image:focus {
-    outline:none;
-  }
-  
-  /* sound check */
-  
-  #soundCheck {
-    text-align: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 25px;
-  }
-  
   #questionChoicesHolder {
     text-align: center;
   }
@@ -254,231 +180,3 @@
     margin: 0 auto;
     display: none;
   }
-  
-  /* drag and drop task css */
-  
-  #networkDragTask{
-    display: none;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: none;
-  }
-  
-  #network-container-lg{
-    width:calc(1200px * var(--size-scale));
-    height:calc(700px * var(--size-scale));
-    border-style: solid;
-    display: flex;
-    position: relative;
-  }
-  
-  #network-container-sm{
-    width:calc(1000px * var(--size-scale));
-    height:calc(450px * var(--size-scale));
-    border-style: solid;
-    display: flex;
-    position: relative;
-  }
-  
-  #picture-container{
-    width:calc(1200px * var(--size-scale));
-    border-color: black;
-    border-style: solid;
-    margin-bottom: 20px;
-  }
-  
-  .w600 {
-    width: calc(600px * var(--size-scale));
-  }
-  
-  .w400 {
-    width: calc(400px * var(--size-scale) + 50);
-  }
-  
-  .community-container{
-    display: flex;
-  }
-  
-  #left-community{
-    margin-right:auto;
-    display: flex;
-  }
-  
-  #right-community{
-    margin-left: auto;
-    display: flex;
-  }
-  
-  .net-slot{
-    display: flex;
-    align-items: center;
-  }
-  
-  .buff-right-lg{
-    margin-left: calc(90px * var(--size-scale));
-    margin-right: calc(30px * var(--size-scale));
-  }
-  
-  .buff-left-lg{
-    margin-left: calc(30px * var(--size-scale));
-    margin-right: calc(90px * var(--size-scale));
-  }
-  
-  .buff-right-sm{
-    margin-left: calc(60px * var(--size-scale));
-    margin-right: calc(20px * var(--size-scale));
-  }
-  
-  .buff-left-sm{
-    margin-left: calc(20px * var(--size-scale));
-    margin-right: calc(60px * var(--size-scale));
-  }
-  
-  .slot{
-    border-style: solid;
-    background-color: white;
-  }
-  
-  .lgW{
-    width:calc(150px * var(--size-scale));
-  }
-  
-  .smW{
-    width:calc(100px * var(--size-scale));
-  }
-  
-  .lgH{
-    height:calc(150px * var(--size-scale));
-  }
-  
-  .smH{
-    height:calc(100px * var(--size-scale));
-  }
-  
-  #slot0{
-    margin-top: calc(250px * var(--size-scale));
-  }
-  
-  #slot1{
-    margin-top: calc(85px * var(--size-scale));
-  }
-  
-  #slot2{
-    margin-bottom: calc(85px * var(--size-scale));
-  }
-  
-  #slot3{
-    margin-bottom: calc(250px * var(--size-scale));
-  }
-  
-  #slot8{
-    margin-top: calc(85px * var(--size-scale));
-  }
-  
-  #slot9{
-    margin-top: calc(250px * var(--size-scale));
-  }
-  
-  #slot5{
-    margin-bottom: calc(250px * var(--size-scale));
-  }
-  
-  #slot7{
-    margin-bottom: calc(85px * var(--size-scale));
-  }
-  
-  .dragTaskButton{
-    display: none;
-    color: black;
-    border: 3px outset grey;
-    font-size: 25px;
-    background-color: #CCCCCC;
-    padding: 8px;
-    text-decoration: none;
-    font-family: Arial, Helvetica;
-    font-weight: bold;
-    margin: 10px;
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%,0%);
-  
-  }
-  
-  .dragTaskButton:hover {
-    color: white;
-  }
-  
-  .dragTaskButton:active {
-    border: 3px inset grey;
-  }
-  
-  #network-diagram{
-    width: calc(850px * var(--size-scale));
-    height: calc(450px * var(--size-scale));
-    /* border-style: solid; */
-    
-    display: flex;
-    position: relative;
-  }
-  
-  #plot0{
-    margin-top: calc(167px * var(--size-scale));
-  }
-  
-  #plot1{
-    margin-top: calc(57px * var(--size-scale));
-  }
-  
-  #plot2{
-    margin-bottom: calc(57px * var(--size-scale));
-  }
-  
-  #plot3{
-    margin-bottom: calc(167px * var(--size-scale));
-  }
-  
-  #plot4{
-    margin-right: 10px;
-  }
-  
-  #plot6{
-    margin-left: 10px;
-  }
-  
-  #plot8{
-    margin-top: calc(57px * var(--size-scale));
-  }
-  
-  #plot9{
-    margin-top: calc(167px * var(--size-scale));
-  }
-  
-  #plot5{
-    margin-bottom: calc(167px * var(--size-scale));
-  }
-  
-  #plot7{
-    margin-bottom: calc(57px * var(--size-scale));
-  }
-  
-  #network-diagram{
-    margin: 0 auto;
-  }
-  
-  .illegalText{
-    text-align: center;
-    width: calc(800px * var(--size-scale));
-    position: absolute;
-    top: "-100px";
-  }
-  
-  #upperText{
-    font-size: 40px;
-  }
-  
-  #lowerText{
-    font-size: 25px;
-  }
-  

@@ -233,14 +233,11 @@ function runInstructions(){
 
   // hide/clear everything, just in case
   hideInstructions();
-
-  // hide canvas and other tasks if visible
-  $(".canvasas").hide();
-  $("#oddOneOutTaskDiv").hide();
-  $("#network-diagram").hide();
-  if (showNavButtons) {
-    $("#navButtons").show();
-  }
+  hideCanvas();
+ 
+  // if (showNavButtons) {
+  //   $("#navButtons").show();
+  // }
 
   // if need to repeat instructions (e.g., participant failed to meet accuracy requirement), then reshow all instructions
   if (instructions["iterator"][expStage] >= instructions["max"][expStage]){
@@ -293,7 +290,7 @@ function runInstructions(){
   $(document).on('click', '#startExpButton', function(){
     let confirm = true;
     if (expStage == "main1-2" && Boolean(window.confirm)) {
-      confirm = window.confirm("Are you sure you are ready to proceed? Remember to review the image network before proceeding. You will be expected to reproduce it from memory.");
+      confirm = window.confirm("Are you sure you are ready to proceed?");
     }
 
     if (confirm) {
@@ -346,6 +343,7 @@ function iterateInstruction(){
 
 function exitResponse(){
   $('#nextInstrButton').hide();
+
   if (instructions["exitResponse"][expStage] == "#startExpButton"){
     $('#startExpButton').show();
   } else if (instructions["exitResponse"][expStage] == "#nextSectionButton") {
