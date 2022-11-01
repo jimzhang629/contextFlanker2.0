@@ -25,3 +25,9 @@ for (var i = 0; i < selectedImages.length; i++) {
   selectedImages[i] = new Image(500,300);
   selectedImages[i].src = selectedSRCs[i];
 }
+
+let selectedPracticeImages = selectedImages.slice(0,nPracticeTrials);
+let selectedTestImages = selectedImages.slice(nPracticeTrials);
+
+console.log("practice imgs: ", selectedPracticeImages);
+console.log("test imgs: ", selectedTestImages);

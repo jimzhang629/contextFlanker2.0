@@ -1,16 +1,23 @@
 // QOL parameters
-let expStage = "prac1-1"; //first expStage, see instructions.js
+let expStage = "prac1"; //first expStage, see instructions.js
+let speed = "normal"; //speed of experiment: fast or normal
 
 // ----- Global Variables  ----- //
 let nBlocks = 4;
 let trialsPerBlock = 160; // (multiples of 16)
+let stimInterval = (speed == "fast") ? 10 : 2500;
+let fixInterval = (speed == "fast") ? 10 : 500;
+let itiMin = (speed == "fast") ? 10 : 1200;
+let itiMax = (speed == "fast") ? 10 : 1400;
+let itiStep = 50;
+let trialInput;
 
 // for practice task
-let nPracticeTrials = 16;
+let nPracticeTrials = 5;
 let practiceAccCutoff = 80; // 85 acc% = 7/8
 
 // trial level information (default to lowest value)
-let trialCount = 1, blockTrialCount = 1, block = 1, accCount = 0;
+let trialCount = 0, blockTrialCount = 1, block = 1, accCount = 0;
 
 //global task arrays
 let targetShapeArr = [], distractionArr = [], taskSequenceArr = [], targetLocationArr = [], distractorLocationArr = [], lineDirectionArr = [];
@@ -18,7 +25,7 @@ let sequenceTypeArr, sequenceKindArr, sequencePositionArr;
 
 //other global vars
 let canvas, ctx; // global canvas variable
-let sampleSize = 3;
+let sampleSize = 8;
 let taskFunc, transitionFunc, stimFunc, taskName;
 let acc, stimOnset, respOnset, respTime, partResp, runStart;
 let stimTimeout, breakOn = false, repeatNecessary = false, data=[];
@@ -29,10 +36,10 @@ let keyListener = 0; // see below
 // see counterbalancing.js for block order stuff. Define getBlockOrder in some other function.
 
 function experimentFlow(){
-    trialCount = 1;
-    blockTrialCount = 1;
+    trialCount = 0;
+    blockTrialCount = 0;
     if (!repeatNecessary) {
-      block = 1;
+      block = 0;
     } else {
       block++;
     }
@@ -44,10 +51,11 @@ function experimentFlow(){
     // make a practice task though, and test using it
 
     if (expStage.indexOf("prac1") != -1){
-      console.log('prac1');
+      console.log('prac1'); // need exp flow at end 
     } else if (expStage.indexOf("main1") != -1){
       console.log('main1');
-      endOfExperiment();
+      contextFlankerPracticeTask();
+      // endOfExperiment();
     }
   }
   
@@ -160,7 +168,7 @@ function experimentFlow(){
     if (keyListener == 8) { // press button to start task
       keyListener = 0;
       sectionEnd = new Date().getTime() - runStart;
-      logSectionData();
+      // logSectionData();
       experimentFlow();
       return
     }}

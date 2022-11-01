@@ -1,12 +1,13 @@
 /** displays an image located at filePath on a canvas 
  * @param {Image} centerImg - the target Image object that you want to display in the center of the screen
- */
+ * @param {string} location - 'center','top', or 'bottom'. Screen location to display trial.
+*/
 
-//get the coordinates of the center image somehow. Need to store it as a variable prob.
-function draw(centerImg) {
+//maybe do this by shifting the canvas up and down instead of the image.
+function draw(centerImg, location="center") {
     
     // these are all half the size of the original image
-
+    
     scaleRatio = 0.5;
     ballScaledW = basketballImg.width * scaleRatio; 
     ballScaledH = basketballImg.height * scaleRatio;
@@ -18,11 +19,23 @@ function draw(centerImg) {
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     // draw center img in the center of the canvas
+
+    if (location == "center"){
     ctx.drawImage(centerImg, leftCenterImg, canvas.height/2 - cImgScaledH/2, width=cImgScaledW, height=cImgScaledH);
     //draw a flanker at 1/4 of screen and at 3/4 of screen (hope this works)
     ctx.drawImage(basketballImg, leftBall, canvas.height/2 - ballScaledH/2, width=ballScaledW, height=ballScaledH);
     ctx.drawImage(basketballImg, canvas.width - leftBall - ballScaledW, canvas.height/2 - ballScaledH/2, width=ballScaledW, height=ballScaledH);
-}
+    }
+
+    else if (location == "bottom"){
+      // draw on bottom. Do this later.
+    }
+
+    else if (location == "top"){
+      // draw on top
+    }
+
+  }
 
 
 function fixationScreen(){
@@ -37,10 +50,10 @@ function stimScreen(){
   
     // prepare for response
     keyListener = 1; acc = NaN, respTime = NaN, partResp = NaN, respOnset = NaN;
-  
-    // draw stimuli for this trial
-    stimFunc()
-  
+
+    stimFunc(imageSet[trialCount]);
+
+    console.log('trialCount on stimScreen is: ' + trialCount);
     //proceed to iti after delay
     stimTimeout = setTimeout(itiScreen, stimInterval);
   }

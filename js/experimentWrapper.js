@@ -88,6 +88,7 @@ function updateMainMenu(expStage){
       $("#demographicsForm").hide();
       $("#table").hide();
       startExperiment();
+      console.log('started Experiment')
       break;
     case 3: //debriefing
       $("#mturk_form").show();
