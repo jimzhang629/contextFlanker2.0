@@ -11,10 +11,11 @@ let itiMin = (speed == "fast") ? 10 : 1200;
 let itiMax = (speed == "fast") ? 10 : 1400;
 let itiStep = 50;
 let trialInput;
+let taskArray;
 
 // for practice task
 let nPracticeTrials = 5;
-let practiceAccCutoff = 80; // 85 acc% = 7/8
+let practiceAccCutoff = 80; // this is the percentage of practice trials you need to get right to move on to main task
 
 // trial level information (default to lowest value)
 let trialCount = 0, blockTrialCount = 1, block = 1, accCount = 0;
@@ -92,10 +93,27 @@ function experimentFlow(){
     */
   }
 
+  function getAccuracyAndRT(partResp){
+    // determine reaction time
+    respTime = respOnset - stimOnset;
+  
+    // determine accuracy
+    // [90,122] - Z and [77,109] - M
+    // so by default, congruent is Z and incongruent is M
+  
+    if (taskArray[trialCount-1] == "c") { //why is this -1
+      acc = ([90, 122].indexOf(event.which) != -1) ? 1 : 0;
+    } else {
+      acc = ([77, 109].indexOf(event.which) != -1) ? 1 : 0;
+    }
+  
+    // update acc count
+    if (acc == 1){accCount++;}
+  }
      /** key-value meanings
-     * 0:
-     * 1:
-     * 2:
+     * 0: default keyPressListener
+     * 1: key press during task
+     * 2: default keyReleaseListener
      * 3: they kept holding from last trial, prompt them to let go
      * 4:
      * 5:
@@ -104,6 +122,7 @@ function experimentFlow(){
      * 8: this is keypress for start task?
      * 9:
      */
+    
   function keyPressListener(event){
 
     // unnecessary key press

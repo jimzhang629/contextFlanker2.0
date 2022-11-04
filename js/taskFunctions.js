@@ -1,40 +1,53 @@
 /** displays an image located at filePath on a canvas 
- * @param {Image} centerImg - the target Image object that you want to display in the center of the screen
- * @param {string} location - 'center','top', or 'bottom'. Screen location to display trial.
+ * @param {Image} centerImg : the target Image object that you want to display in the center of the screen
+ * @param {string} location : 'center','top', or 'bottom'. Screen location to display trial.
+ * @param {string} flankerSize : 'small' or 'large'. Size of flanker relative to center image.
 */
 
 //maybe do this by shifting the canvas up and down instead of the image.
-function draw(centerImg, location="center") {
+function draw(centerImg, location='center', flankerSize='large') {
     
     // these are all half the size of the original image
-    
+    let scaleRatio, cImgScaledW, cImgScaledH, flankerScaledW, flankerScaledH, leftCenterImg, leftFlanker;
+
     scaleRatio = 0.5;
-    ballScaledW = basketballImg.width * scaleRatio; 
-    ballScaledH = basketballImg.height * scaleRatio;
     cImgScaledW = centerImg.width * scaleRatio;
     cImgScaledH = centerImg.height * scaleRatio;
 
+    if (flankerSize === 'large') {
+      flankerScaledW = basketballImg.width * scaleRatio; 
+      flankerScaledH = basketballImg.height * scaleRatio;
+    }
+
+    else if (flankerSize === 'small') {
+      flankerScaledW = basketballImg.width * scaleRatio * 0.5; 
+      flankerScaledH = basketballImg.height * scaleRatio * 0.5;
+    }
+
+    else {
+      throw "Please define flankerSize as small or large."
+    }
+
     leftCenterImg = canvas.width/2 - cImgScaledW/2;
-    leftBall = leftCenterImg/2 - ballScaledW/2;
+    leftFlanker = leftCenterImg/2 - flankerScaledW/2;
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     // draw center img in the center of the canvas
 
-    if (location == "center"){
-    ctx.drawImage(centerImg, leftCenterImg, canvas.height/2 - cImgScaledH/2, width=cImgScaledW, height=cImgScaledH);
-    //draw a flanker at 1/4 of screen and at 3/4 of screen (hope this works)
-    ctx.drawImage(basketballImg, leftBall, canvas.height/2 - ballScaledH/2, width=ballScaledW, height=ballScaledH);
-    ctx.drawImage(basketballImg, canvas.width - leftBall - ballScaledW, canvas.height/2 - ballScaledH/2, width=ballScaledW, height=ballScaledH);
+    if (location === 'center') {
+      ctx.drawImage(centerImg, leftCenterImg, canvas.height/2 - cImgScaledH/2, width=cImgScaledW, height=cImgScaledH);
+      //draw a flanker at 1/4 of screen and at 3/4 of screen (hope this works)
+      ctx.drawImage(basketballImg, leftFlanker, canvas.height/2 - flankerScaledH/2, width=flankerScaledW, height=flankerScaledH);
+      ctx.drawImage(basketballImg, canvas.width - leftFlanker - flankerScaledW, canvas.height/2 - flankerScaledH/2, width=flankerScaledW, height=flankerScaledH);
     }
 
-    else if (location == "bottom"){
+    else if (location === 'bottom') {
       // draw on bottom. Do this later.
     }
 
-    else if (location == "top"){
+    else if (location === 'top') {
       // draw on top
     }
-
   }
 
 
@@ -87,9 +100,11 @@ function itiScreen(){
   
     // if task is over, proceed back to next instruction
     if (trialCount > nPracticeTrials) {
+      // checks if you did well enough on practice task to move forward
       if (decimalToPercent(accCount / nPracticeTrials) >= practiceAccCutoff) {
         navigateInstructionPath();
       } else {
+      //if you failed, try again
         practiceAccuracyFeedback(decimalToPercent(accCount / nPracticeTrials));
       }
       return;
