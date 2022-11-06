@@ -1,3 +1,6 @@
+/** contextFlankerPracticeTask runs the practice blocks
+ * 
+ */
 function contextFlankerPracticeTask(){
     // set taskName for data logging
     taskName = "contextFlankerPracticeTask";
