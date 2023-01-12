@@ -19,22 +19,22 @@ function getBlockOrder(blockOrderNum){
       case "learnAtop":
         return {
           c: 0.20,
-          loc: 'top' //but then need another case where keep the same congruency proportion but have loc at bottom
+          loc: 'center' //but then need another case where keep the same congruency proportion but have loc at bottom
         };
       case "learnBbot":
         return {
           c: 0.80,
-          loc: 'bottom'
+          loc: 'center'
         };
       case "learnAbot":
         return {
           c: 0.20,
-          loc: 'bottom'
+          loc: 'center'
         };
       case "learnBtop":
         return {
           c: 0.80,
-          loc: 'top'
+          loc: 'center'
         };
       case "test":
         return {
